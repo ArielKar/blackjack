@@ -4,7 +4,7 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-var count = 0;
+var count = 1;
 var sum = 0;
 
 
@@ -29,8 +29,8 @@ function checkScore() {
 function ask() {
     if (count < 2) {
         rl.question('type "hit" to draw a card or "stay" to stay: ', (answer) => {
-            count++;
             if (answer === 'hit') {
+                count++;
                 sum += hitMe();
                 checkScore();
             } else if (answer === 'stay') {
@@ -42,14 +42,11 @@ function ask() {
             }
         });
     } else {
-        if (sum > 21) {
-            console.log('your score is:', sum, 'you lose!');
-        } else {
-            console.log('your score is:', sum);
-        }
         process.exit();
     }
 }
 // start here
+sum = hitMe();
+console.log('Your first card is a:', sum);
 ask();
 
